@@ -36,7 +36,15 @@ pipeline {
                     repository: nexusRepoName, 
                     //repository: 'simpleapp-release',
                     version: "${mavenPom.version}"
-                    }
+                }
+            }
+        }
+        stage("deploy"){
+            steps{
+                sshagent(['tomcat-server-private-key-ID']) {
+                    sh "scp -o StrictHostKeyChecking=no target/webapp.war osboxes@192.168.0.2:/home/osboxes/apache-tomcat-8.5.65/webapps"
+                 
+                }
             }
         }
 
