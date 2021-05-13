@@ -42,7 +42,7 @@ pipeline {
         stage("deploy"){
             steps{
                 sshagent(['tomcat-server-private-key-ID']) {
-                    sh "scp -o StrictHostKeyChecking=no target/simple-app-1.0.0.war osboxes@192.168.0.3:/home/osboxes/apache-tomcat-8.5.65/webapps"
+                    sh "scp -o StrictHostKeyChecking=no target/webapp.war osboxes@192.168.0.3:/home/osboxes/apache-tomcat-8.5.65/webapps"
                  
                 }
             }
