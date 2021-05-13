@@ -38,5 +38,12 @@ pipeline {
                     }
             }
         }
+        stage("deploy"){
+            steps{
+                sshagent(['tomcat-server-private-key-ID']) {
+                    sh "scp -o StrictHostKeyChecking=no webapp/target/webapp.war osboxes@192.168.0.2:/home/osboxes/apache-tomcat-8.5.65/webapps"
+                 
+                }
+            }
     }
 }
