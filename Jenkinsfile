@@ -32,8 +32,8 @@ pipeline {
                     nexusUrl: '192.168.0.2:8081', 
                     nexusVersion: 'nexus3', 
                     protocol: 'http', 
-                    //repository: nexusRepoName, 
-                    repository: 'simpleapp-release',
+                    repository: nexusRepoName, 
+                    //repository: 'simpleapp-release',
                     version: "${mavenPom.version}"
                     }
             }
