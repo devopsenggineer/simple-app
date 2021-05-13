@@ -11,6 +11,7 @@ pipeline {
             steps{
                  sh script: 'mvn clean package'
                  archiveArtifacts artifacts: 'target/*.war', onlyIfSuccessful: true
+                 sh 'cp target/simple-app-1.0.0.war target/webapp.war'
             }
         }
         stage('Upload War To Nexus'){
@@ -38,12 +39,6 @@ pipeline {
                     }
             }
         }
-        stage("deploy"){
-            steps{
-                sshagent(['tomcat-server-private-key-ID']) {
-                    sh "scp -o StrictHostKeyChecking=no webapp/target/webapp.war osboxes@192.168.0.2:/home/osboxes/apache-tomcat-8.5.65/webapps"
-                 
-                }
-            }
+
     }
 }
