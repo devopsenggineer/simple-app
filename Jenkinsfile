@@ -30,7 +30,7 @@ pipeline {
                     ], 
                     credentialsId: 'nexus3', 
                     groupId: 'in.javahome', 
-                    nexusUrl: '192.168.0.2:8081', 
+                    nexusUrl: '192.168.0.3:8081', 
                     nexusVersion: 'nexus3', 
                     protocol: 'http', 
                     repository: nexusRepoName, 
@@ -42,7 +42,7 @@ pipeline {
         stage("deploy"){
             steps{
                 sshagent(['tomcat-server-private-key-ID']) {
-                    sh "scp -o StrictHostKeyChecking=no target/webapp.war osboxes@192.168.0.2:/home/osboxes/apache-tomcat-8.5.65/webapps"
+                    sh "scp -o StrictHostKeyChecking=no target/webapp.war osboxes@192.168.0.3:/home/osboxes/apache-tomcat-8.5.65/webapps"
                  
                 }
             }
