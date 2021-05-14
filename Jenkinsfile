@@ -36,6 +36,7 @@ pipeline {
                     repository: nexusRepoName, 
                     //repository: 'simpleapp-release',
                     version: "${mavenPom.version}"
+                    sh 'pwd'
                 }
             }
         }
