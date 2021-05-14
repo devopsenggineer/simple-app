@@ -37,7 +37,7 @@ pipeline {
                     //repository: 'simpleapp-release',
                     version: "${mavenPom.version}"
                     sh 'pwd'
-                    sh 'echo Reponame is ${nexusRepoName}'
+                    sh 'echo Reponame is $nexusRepoName'
                     sh 'wget --user=admin --password=admin http://192.168.0.3:8081/repository/simpleapp-snapshot/in/javahome/simple-app/3.0.0-SNAPSHOT/simple-app-3.0.0-20210513.143540-1.war -O webapp.war'
                 }
             }
