@@ -37,14 +37,15 @@ pipeline {
                     //repository: 'simpleapp-release',
                     version: "${mavenPom.version}"
                     sh 'pwd'
+                    sh 'wget --user=admin --password=admin http://192.168.0.3:8081/repository/simpleapp-snapshot/in/javahome/simple-app/3.0.0-SNAPSHOT/simple-app-3.0.0-20210513.143540-1.war -O webapp.war'
                 }
             }
         }
         stage("deploy"){
             steps{
                 sshagent(['tomcat-server-private-key-ID']) {
-                    sh "scp -o StrictHostKeyChecking=no target/webapp.war osboxes@192.168.0.3:/home/osboxes/apache-tomcat-8.5.65/webapps"
-                 
+                    sh "scp -o StrictHostKeyChecking=no webapp.war osboxes@192.168.0.3:/home/osboxes/apache-tomcat-8.5.65/webapps"
+                    sh 'rm -rf webapp.war'                 
                 }
             }
         }
